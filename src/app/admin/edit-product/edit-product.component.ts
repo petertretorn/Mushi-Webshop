@@ -18,5 +18,7 @@ export class EditProductComponent implements OnInit {
 
   saveProduct() {
     console.log('saving product')
+    
+    this.productService.saveProduct(this.product)
   }
 }
