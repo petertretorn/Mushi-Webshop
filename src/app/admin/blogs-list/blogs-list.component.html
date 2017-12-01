@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th>Kategori</th>
+      <th>Forfatter</th>
+      <th>Redigeret</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let blog of blogs$ | async' (click)="gotoBlog()">
+      <th>{{blog.title}}</th>
+      <th>{{blog.category}}</th>
+      <th>{{blog.author}}</th>
+      <th>{{blog.edited | date}}</th>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-success" routerLink="../create-blog">Opret ny</button>
