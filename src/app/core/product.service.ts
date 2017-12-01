@@ -1,8 +1,12 @@
+import { DummyService } from './dummy.service';
+import { FireService } from './fire.service';
 import { Injectable } from '@angular/core';
 import { Product } from '@app/models/product';
 import { Observable } from 'rxjs/Observable';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { BlogService } from '@app/core/blog.service';
 
+@Injectable()
 export class ProductService {
 
   collection: AngularFirestoreCollection<Product>
@@ -10,8 +14,8 @@ export class ProductService {
   constructor(private db: AngularFirestore) {
     this.collection = this.db.collection('products')
   }
-  
-  getProducts() {
+
+  getProducts(): Observable<Product[]> {
     return this.collection.valueChanges()
   }
 
