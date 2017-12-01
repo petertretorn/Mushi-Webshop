@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AdminGuard } from './admin.guard';
 import { MaterialModule } from '@app/material/material.module';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @NgModule({
   imports: [
@@ -18,8 +19,8 @@ import { MaterialModule } from '@app/material/material.module';
     MaterialModule
   ],
   declarations: [],
-  providers: [AdminGuard],
-  exports: [FormsModule, CommonModule, MaterialModule]
+  providers: [ AdminGuard],
+  exports: [ FormsModule, CommonModule, MaterialModule]
 })
 export class SharedModule {
   static forRoot() {
