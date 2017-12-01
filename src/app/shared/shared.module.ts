@@ -7,17 +7,19 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AdminGuard } from './admin.guard';
+import { MaterialModule } from '@app/material/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MaterialModule
   ],
   declarations: [],
   providers: [AdminGuard],
-  exports: [FormsModule, CommonModule]
+  exports: [FormsModule, CommonModule, MaterialModule]
 })
 export class SharedModule {
   static forRoot() {
