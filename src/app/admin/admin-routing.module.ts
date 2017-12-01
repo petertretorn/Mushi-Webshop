@@ -1,3 +1,4 @@
+import { EditProductComponent } from './edit-product/edit-product.component';
 import { LoginComponent } from './login/login.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'create-blog', component: CreateBlogComponent },
+      { path: 'edit-product', component: EditProductComponent},
       { path: 'blogs-list', component: BlogsListComponent },
       { path: 'products-list', component: ProductsListComponent },
       { path: 'login', component: LoginComponent },

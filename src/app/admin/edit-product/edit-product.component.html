@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Rediger produkt</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <div class="flex-container">
+        <mat-input-container>
+          <input [(ngModel)]="product.name" name="name" matInput placeholder="navn">
+        </mat-input-container>
+
+        <mat-input-container>
+          <textarea [(ngModel)]="product.description" rows=10 name="description" matInput placeholder="Produkt beskrivelse"></textarea>
+        </mat-input-container>
+
+        <mat-input-container>
+          <input [(ngModel)]="product.price" name="price" matInput placeholder="Pris">
+        </mat-input-container>
+
+        <mat-input-container>
+          <input [(ngModel)]="product.quantity" name="quantity" matInput placeholder="Mængde">
+        </mat-input-container>
+
+
+        <button (click)="saveProduct()" mat-raised-button color="primary">Gem</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

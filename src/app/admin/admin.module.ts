@@ -7,6 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { MainComponent } from './main/main.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
     BlogsListComponent, 
     ProductsListComponent,
     CreateBlogComponent,
-    LoginComponent
+    LoginComponent,
+    EditProductComponent
     ]
 })
 export class AdminModule { }
