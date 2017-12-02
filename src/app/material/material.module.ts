@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatInputModule, MatButtonModule, MatTableModule } from '@angular/material'
+import { MatCardModule, MatInputModule, MatButtonModule, MatTableModule, MatIconModule, MatSnackBarModule } from '@angular/material'
 
 @NgModule({
   imports: [
@@ -9,14 +9,18 @@ import { MatCardModule, MatInputModule, MatButtonModule, MatTableModule } from '
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   declarations: [],
   exports: [
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

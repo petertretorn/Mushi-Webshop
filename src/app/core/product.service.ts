@@ -7,16 +7,16 @@ import { BlogService } from '@app/core/blog.service';
 @Injectable()
 export class ProductService {
 
-  collection: AngularFirestoreCollection<Product>
+  collectionRef: AngularFirestoreCollection<Product>
   product: Observable<Product>;
 
   constructor(private db: AngularFirestore) {
-    this.collection = this.db.collection('products')
+    this.collectionRef = this.db.collection('products')
   }
 
   getProducts(): Observable<Product[]> {
 
-    return this.collection.snapshotChanges().map(actions => {       
+    return this.collectionRef.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Product;
         data.id = a.payload.doc.id;
@@ -31,10 +31,15 @@ export class ProductService {
   }
 
   updateProduct(product: Product) {
-    this.collection.doc(product.id).update({ ...product })
+    console.log(`id : ${product.id}`)
+    return this.collectionRef.doc(product.id).update({ ...product })
   }
 
   saveProduct(product: Product) {
-    this.collection.add({ ...product })
+    return this.collectionRef.add({ ...product })
+  }
+
+  deleteProduct(id: string) {
+    return this.collectionRef.doc(id).delete()
   }
 }
