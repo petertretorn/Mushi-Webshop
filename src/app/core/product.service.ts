@@ -31,7 +31,6 @@ export class ProductService {
   }
 
   updateProduct(product: Product) {
-    console.log(`id : ${product.id}`)
     return this.collectionRef.doc(product.id).update({ ...product })
   }
 
@@ -41,5 +40,7 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.collectionRef.doc(id).delete()
+
+    //TODO delete image also
   }
 }

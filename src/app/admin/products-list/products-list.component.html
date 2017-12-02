@@ -32,7 +32,7 @@
 <mat-card *ngFor="let product of products" fxLayoutAlign="space-between center">
   <span>{{product.name}}</span>
   <div>
-    <button mat-button [routerLink]="['/admin/edit-product', product.id]">RET</button>
+    <button mat-button [routerLink]="['/admin/edit-product', product.id]">RÈDIGER</button>
     <button mat-button (click)="deleteProduct(product.id)">SLET</button>
   </div>
 </mat-card>

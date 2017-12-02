@@ -28,7 +28,7 @@ export class ProductsListComponent implements OnInit {
 
   deleteProduct(id) {
     this.productService.deleteProduct(id).then(() => {
-      this.snackBar.open('Vare er slettet', 'SUCCES', { duration: 700 })
+      this.snackBar.open('Vare er slettet', 'SUCCES', { duration: 1000 })
     })
   }
 }

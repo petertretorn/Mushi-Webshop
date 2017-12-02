@@ -4,4 +4,5 @@ export class Product {
     quantity: Number
     description: string
     id?: string
+    imageUrl: string
 }

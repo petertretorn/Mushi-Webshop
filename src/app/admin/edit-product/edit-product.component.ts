@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { MatSnackBar } from '@angular/material';
 import * as  firebase from 'firebase';
+import { FileService } from '@app/core/file.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,8 +13,8 @@ import * as  firebase from 'firebase';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
+  uploadInProgress: Boolean
   file: File;
-  private basePath = '/images';
   product: Product = new Product();
 
   isNew: Boolean = false
@@ -23,6 +24,7 @@ export class EditProductComponent implements OnInit {
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
+    private fileService: FileService,
     private router: Router) { }
 
   ngOnInit() {
@@ -42,6 +44,8 @@ export class EditProductComponent implements OnInit {
   }
 
   saveProduct() {
+
+
     if (this.isNew) {
       this.productService.saveProduct(this.product).then(() => {
         this.openSnackbar('Ny vare er gemt')
@@ -57,51 +61,25 @@ export class EditProductComponent implements OnInit {
   }
 
   handleFile(event) {
-    console.log('event: ' + event)
-    this.file = event.target.files[0]
-    console.log('name: ' + this.file.name)
+
+    if (!!this.product.imageUrl) {
+      this.fileService.deleteFile(this.product.imageUrl)
+    }
+
+    let file = event.target.files[0]
+    const name = file.name + new Date().getTime();
+    
+    file = new File([file], name, { type: file.type });
+
+    this.uploadInProgress = true
+    
+    this.fileService.uploadFileToStorage(file).then(res => {
+      this.product.imageUrl = res.metadata.downloadURLs[0]
+      this.uploadInProgress = false
+    })
   }
 
-  uploadFile() {
-    this.uploadFileToStorage(this.file)
-  }
-
-  uploadFileToStorage(upload: File) {
-    const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePath}/${upload.name}`)
-      .put(upload);
-
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      // three observers
-      // 1.) state_changed observer
-      (snapshot) => {
-        // upload in progress
-        var progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
-        console.log('progress: ' + progress);
-      },
-      // 2.) error observer
-      (error) => {
-        // upload failed
-        console.log(error);
-      },
-      // 3.) success observer
-      (): any => {
-        var url = uploadTask.snapshot.downloadURL;
-        var name = upload.name;
-        this.saveFileData( { url, name });
-      }
-    );
-  }
-
-  private saveFileData(data) {
-    console.log('File saved!: ' + data.url, data.name);
-  }
-  /* private saveFileData(upload: Upload) {
-    this.db.list(`${this.basePath}/`).push(upload);
-    console.log('File saved!: ' + upload.url);
-  }
- */
   openSnackbar(message: string) {
-    this.snackBar.open(message, 'SUCCES', { duration: 700 })
+    this.snackBar.open(message, 'SUCCES', { duration: 1000 })
   }
 }

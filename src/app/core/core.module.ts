@@ -1,3 +1,4 @@
+import { FileService } from '@app/core/file.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '@app/core/blog.service';
@@ -8,6 +9,6 @@ import { AuthService } from '@app/core/auth.service';
   imports: [
     CommonModule,
   ],
-  providers: [BlogService, ProductService, AuthService]
+  providers: [BlogService, ProductService, AuthService, FileService]
 })
 export class CoreModule { }
