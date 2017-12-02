@@ -3,4 +3,5 @@ export class Product {
     price: Number
     quantity: Number
     description: string
+    id?: string
 }
