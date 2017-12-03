@@ -9,9 +9,6 @@
 
 .teaser .bg-image {
     position: absolute;
-
-    /*background-image: 'assets/images/landing-mushi.jpeg';*/
-    /*background-image: url('https://static.pexels.com/photos/325262/pexels-photo-325262.jpeg');*/
     background-image: url('/assets/images/chagabaggrund.jpg');
     width: 100%;
     height: 100vh;

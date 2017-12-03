@@ -14,8 +14,6 @@ import { MatSnackBar } from '@angular/material';
 export class ProductsListComponent implements OnInit {
   products: Product[]
 
-  displayedColumns = ['name', 'description', 'price', 'quantity']
-
   constructor(public productService: ProductService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
