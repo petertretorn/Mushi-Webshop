@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { MatSnackBar } from '@angular/material';
 import * as  firebase from 'firebase';
 import { FileService } from '@app/core/file.service';
+import { CategoryService } from '@app/core/category.service';
+import { Category } from '@app/models/category.model';
 
 @Component({
   selector: 'app-edit-product',
@@ -21,7 +23,10 @@ export class EditProductComponent implements OnInit {
 
   heading: string = ''
 
+  categories: Category[] = []
+
   constructor(private productService: ProductService,
+    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private fileService: FileService,
@@ -32,6 +37,10 @@ export class EditProductComponent implements OnInit {
 
     if (id === 'new') this.isNew = true
     else this.fetchProduct(id)
+
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories
+    })
 
     this.heading = (this.isNew) ? 'Ny vare' : 'Ret oplysninger'
   }
@@ -44,20 +53,18 @@ export class EditProductComponent implements OnInit {
   }
 
   saveProduct() {
-
-
     if (this.isNew) {
       this.productService.saveProduct(this.product).then(() => {
         this.openSnackbar('Ny vare er gemt')
         this.router.navigate(['admin/products-list'])
       })
     } else {
+      console.log('category: ' + this.product.categoryId)
       this.productService.updateProduct(this.product).then(() => {
         this.openSnackbar('Rettelser er gemt')
         this.router.navigate(['admin/products-list'])
       })
     }
-
   }
 
   handleFile(event) {
@@ -68,11 +75,11 @@ export class EditProductComponent implements OnInit {
 
     let file = event.target.files[0]
     const name = file.name + new Date().getTime();
-    
+
     file = new File([file], name, { type: file.type });
 
     this.uploadInProgress = true
-    
+
     this.fileService.uploadFileToStorage(file).then(res => {
       this.product.imageUrl = res.metadata.downloadURLs[0]
       this.uploadInProgress = false

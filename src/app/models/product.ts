@@ -5,4 +5,7 @@ export class Product {
     description: string
     id?: string
     imageUrl: string
+    categoryId?: string
+    instruction: string
+    teaser: string
 }

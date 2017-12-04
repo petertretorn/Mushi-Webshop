@@ -14,16 +14,33 @@
           </mat-input-container>
 
           <mat-input-container>
-            <textarea [(ngModel)]="product.description" rows=10 name="description" matInput placeholder="Produkt beskrivelse"></textarea>
+            <textarea [(ngModel)]="product.teaser" rows=2 name="teaser" matInput placeholder="teaser"></textarea>
           </mat-input-container>
 
           <mat-input-container>
-            <input [(ngModel)]="product.price" name="price" matInput placeholder="Pris">
+            <textarea [(ngModel)]="product.description" rows=5 name="description" matInput placeholder="Beskrivelse"></textarea>
           </mat-input-container>
 
           <mat-input-container>
-            <input [(ngModel)]="product.quantity" name="quantity" matInput placeholder="Vægt i gram">
+            <textarea [(ngModel)]="product.instruction" rows=5 name="instruction" matInput placeholder="Vejledning"></textarea>
           </mat-input-container>
+
+          <mat-form-field>
+            <mat-select placeholder="Kategori" name="category" [(ngModel)]="product.categoryId">
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{ category.displayName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <mat-input-container>
+              <input [(ngModel)]="product.price" name="price" matInput placeholder="Pris">
+            </mat-input-container>
+
+            <mat-input-container>
+              <input [(ngModel)]="product.quantity" name="quantity" matInput placeholder="Vægt i gram">
+            </mat-input-container>
+          </div>
         </div>
       </form>
     </mat-card-content>
