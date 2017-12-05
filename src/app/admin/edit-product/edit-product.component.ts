@@ -3,7 +3,7 @@ import { Product } from '@app/models/product';
 import { ProductService } from '@app/core/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import * as  firebase from 'firebase';
 import { FileService } from '@app/core/file.service';
 import { CategoryService } from '@app/core/category.service';
@@ -20,8 +20,8 @@ export class EditProductComponent implements OnInit {
   link: Link = new Link()
 
   uploadInProgress: Boolean
-  file: File;
-  product: Product = new Product();
+  file: File
+  product: Product = new Product()
 
   isNew: Boolean = false
 
@@ -50,11 +50,14 @@ export class EditProductComponent implements OnInit {
   }
 
   fetchProduct(id) {
-    this.productService.getProductById(id).subscribe(product => {
+    const subscription = this.productService.getProductById(id).subscribe(product => {
       this.product = product
       this.product.id = id
       this.product.links = this.product.links || []
+      subscription.unsubscribe()
     })
+
+
   }
 
   saveProduct() {
@@ -71,7 +74,7 @@ export class EditProductComponent implements OnInit {
       })
     }
   }
-  
+
   addLink() {
     this.product.links.push(this.link)
     this.link = new Link()
@@ -80,6 +83,19 @@ export class EditProductComponent implements OnInit {
   deleteLink(link: Link) {
     const index = this.product.links.indexOf(link)
     this.product.links.splice(index, 1)
+  }
+
+  deleteProduct(id) {
+    console.log('before sb')
+    const sb: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open('Er du Sikker?', 'SLET', { duration: 1500 })
+    const productName = this.product.name 
+
+    sb.onAction().subscribe(() => {
+      this.productService.deleteProduct(id).then(() => {
+        this.snackBar.open(`${productName} er nu slettet`, null, { duration: 1000 })
+        this.router.navigate(['admin/products-list'])
+      }
+    })
   }
 
   handleFile(event) {

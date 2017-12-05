@@ -1,75 +1,80 @@
-<mat-card>
-  <img mat-card-image [src]="product.imageUrl" alt="Billede mangler">
-  <mat-card-actions>
-    <button (click)="fileInput.click()" mat-raised-button>
-      <mat-icon>library_add</mat-icon>
-      <span>VÆLG</span>
-      <input #fileInput type="file" (change)="handleFile($event)" style="display: none" />
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div *ngIf="!!product">
+  <mat-card>
+    <img mat-card-image [src]="product.imageUrl" alt="Billede mangler">
+    <mat-card-actions>
+      <button (click)="fileInput.click()" mat-raised-button>
+        <mat-icon>library_add</mat-icon>
+        <span>VÆLG</span>
+        <input #fileInput type="file" (change)="handleFile($event)" style="display: none" />
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <h4>{{ heading }}</h4>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form>
-      <div class="flex-container">
-        <mat-input-container>
-          <input [(ngModel)]="product.name" name="name" matInput placeholder="navn">
-        </mat-input-container>
-
-        <mat-input-container>
-          <textarea [(ngModel)]="product.teaser" rows=3 name="teaser" matInput placeholder="teaser tekst"></textarea>
-        </mat-input-container>
-
-        <mat-input-container>
-          <textarea [(ngModel)]="product.description" rows=10 name="description" matInput placeholder="Beskrivelse"></textarea>
-        </mat-input-container>
-
-        <mat-input-container>
-          <textarea [(ngModel)]="product.instruction" rows=10 name="instruction" matInput placeholder="Vejledning"></textarea>
-        </mat-input-container>
-
-        <div>
-          <mat-form-field>
-            <mat-select placeholder="Kategori" name="category" [(ngModel)]="product.categoryId">
-              <mat-option *ngFor="let category of categories" [value]="category.id">
-                {{ category.displayName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>{{ heading }}</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <div class="flex-container">
           <mat-input-container>
-            <input [(ngModel)]="product.price" name="price" matInput placeholder="Pris">
+            <input [(ngModel)]="product.name" name="name" matInput placeholder="navn">
           </mat-input-container>
 
           <mat-input-container>
-            <input [(ngModel)]="product.quantity" name="quantity" matInput placeholder="Vægt i gram">
+            <textarea [(ngModel)]="product.teaser" rows=3 name="teaser" matInput placeholder="teaser tekst"></textarea>
           </mat-input-container>
+
+          <mat-input-container>
+            <textarea [(ngModel)]="product.description" rows=10 name="description" matInput placeholder="Beskrivelse"></textarea>
+          </mat-input-container>
+
+          <mat-input-container>
+            <textarea [(ngModel)]="product.instruction" rows=10 name="instruction" matInput placeholder="Vejledning"></textarea>
+          </mat-input-container>
+
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Kategori" name="category" [(ngModel)]="product.categoryId">
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                  {{ category.displayName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-input-container>
+              <input [(ngModel)]="product.price" name="price" matInput placeholder="Pris">
+            </mat-input-container>
+
+            <mat-input-container>
+              <input [(ngModel)]="product.quantity" name="quantity" matInput placeholder="Vægt i gram">
+            </mat-input-container>
+          </div>
+          <div>
+
+            <mat-input-container>
+              <input [(ngModel)]="link.description" name="link" matInput placeholder="link beskrivlese">
+            </mat-input-container>
+
+            <mat-input-container>
+              <input [(ngModel)]="link.url" name="url" matInput placeholder="url">
+            </mat-input-container>
+            <button (click)="addLink()" mat-button>TILLFØJ LINK</button>
+          </div>
+          <div>
+            <p *ngFor="let link of product.links" class="badge">{{link.description}}
+              <span class="delete" (click)="deleteLink(link)">X</span>
+            </p>
+          </div>
         </div>
-        <div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveProduct()" mat-raised-button color="primary">GEM</button>
+      <button [routerLink]="['/admin/products-list']" mat-raised-button color="accent">TILBAGE</button>
+      <button (click)="deleteProduct(product.id)" mat-raised-button color="warn">SLET</button>
+    </mat-card-actions>
+  </mat-card>
 
-          <mat-input-container>
-            <input [(ngModel)]="link.description" name="link" matInput placeholder="link beskrivlese">
-          </mat-input-container>
-
-          <mat-input-container>
-            <input [(ngModel)]="link.url" name="url" matInput placeholder="url">
-          </mat-input-container>
-          <button (click)="addLink()" mat-button>TILLFØJ LINK</button>
-        </div>
-        <div>
-          <p *ngFor="let link of product.links"class="badge">{{link.description}} <span class="delete" (click)="deleteLink(link)">X</span></p>
-        </div>
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button (click)="saveProduct()" mat-raised-button color="primary">GEM</button>
-    <button [routerLink]="['/admin/products-list']" mat-raised-button color="accent">TILBAGE</button>
-  </mat-card-actions>
-</mat-card>
-
+</div>
