@@ -12,4 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  loginAdmin() {
+    console.log('logging in admin')
+  }
 }

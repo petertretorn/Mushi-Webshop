@@ -13,23 +13,23 @@
  * {
      box-sizing: border-box;
      font-family: "Fredoka One", Verdana, sans-serif;
-     font-weight: lighter;
+     /* font-weight: lighter; */
  }
 
-html {
+/* html {
     height: 100%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background: rgb(94, 34, 34); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(240,249,255,1) 0%, rgba(161,219,255,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgb(99, 25, 25) 50%,rgba(161,219,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to top, rgb(7, 58, 47) 0%,rgba(161,219,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: rgb(94, 34, 34);
+    background: -moz-linear-gradient(top, rgba(240,249,255,1) 0%, rgba(161,219,255,1) 100%);
+    background: -webkit-linear-gradient(top, rgb(99, 25, 25) 50%,rgba(161,219,255,1) 100%); 
+    background: linear-gradient(to top, rgb(7, 58, 47) 0%,rgba(161,219,255,1) 100%); 
     background-attachment: fixed;
 }
-
-body{
+ */
+/* body{
   background-color: transparent!important;
      font-size: 1.1em;
-}
+} */
