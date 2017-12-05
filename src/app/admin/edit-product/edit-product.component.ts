@@ -90,7 +90,7 @@ export class EditProductComponent implements OnInit {
     const productName = this.product.name
 
     sb.onAction().subscribe(() => {
-      this.productService.deleteProduct(id).then(() => {
+      this.productService.deleteProduct(this.product).then(() => {
         this.openSnackbar(`${productName} er nu slettet`, null, 1000)
         this.router.navigate(['admin/products-list'])
       })

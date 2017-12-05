@@ -16,9 +16,9 @@ mat-card {
 .badge {
   background: rgb(180, 151, 172);
   font-size: 1.1em;
-  padding: 5px;
   border-radius: 2px;
   margin: 5px 5px;
+  font-weight: lighter;
   display: inline-block;
 }
 

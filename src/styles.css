@@ -12,7 +12,8 @@
 
  * {
      box-sizing: border-box;
-     font-family: "Fredoka One", cursive;
+     font-family: "Fredoka One", Verdana, sans-serif;
+     font-weight: lighter;
  }
 
 html {
