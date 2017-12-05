@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,12 +12,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { LoginComponent } from '@app/shared/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
-    NavbarComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +29,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AngularFirestoreModule,
     CoreModule,
   ],
+  entryComponents: [LoginComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

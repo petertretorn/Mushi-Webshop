@@ -10,6 +10,7 @@ import { CategoryService } from './category.service';
   imports: [
     CommonModule,
   ],
-  providers: [BlogService, ProductService, AuthService, FileService, CategoryService]
+  providers: [BlogService, ProductService, AuthService, FileService, CategoryService],
+  declarations: []
 })
 export class CoreModule { }

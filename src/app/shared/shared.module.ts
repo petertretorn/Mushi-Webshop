@@ -5,20 +5,28 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@app/material/material.module';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavbarComponent } from '@app/shared/navbar/navbar.component';
+import { LoginComponent } from '@app/shared/login/login.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
-  declarations: [],
+  declarations: [
+    NavbarComponent,
+    LoginComponent
+  ],
   exports: [
     FormsModule,
     CommonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NavbarComponent,
+    LoginComponent
   ]
 })
 export class SharedModule {

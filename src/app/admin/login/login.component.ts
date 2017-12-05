@@ -7,7 +7,7 @@ import { AuthService } from '@app/core/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginOLD {
 
   email: string;
   password: string;
