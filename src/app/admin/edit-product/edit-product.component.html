@@ -1,4 +1,15 @@
 <mat-card>
+  <img mat-card-image [src]="product.imageUrl" alt="Billede mangler">
+  <mat-card-actions>
+    <button (click)="fileInput.click()" mat-raised-button>
+      <mat-icon>library_add</mat-icon>
+      <span>VÆLG</span>
+      <input #fileInput type="file" (change)="handleFile($event)" style="display: none" />
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
   <mat-card-header>
     <mat-card-title>
       <h4>{{ heading }}</h4>
@@ -62,13 +73,3 @@
   </mat-card-actions>
 </mat-card>
 
-<mat-card>
-  <img mat-card-image [src]="product.imageUrl" alt="Billede mangler">
-  <mat-card-actions>
-    <button (click)="fileInput.click()" mat-raised-button>
-      <mat-icon>library_add</mat-icon>
-      <span>VÆLG</span>
-      <input #fileInput type="file" (change)="handleFile($event)" style="display: none" />
-    </button>
-  </mat-card-actions>
-</mat-card>
