@@ -3,6 +3,7 @@ import { Product } from '@app/models/product';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { BlogService } from '@app/core/blog.service';
+import { FileService } from '@app/core/file.service';
 
 @Injectable()
 export class ProductService {
@@ -10,7 +11,7 @@ export class ProductService {
   collectionRef: AngularFirestoreCollection<Product>
   product: Observable<Product>;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private fileService: FileService) {
     this.collectionRef = this.db.collection('products')
   }
 
@@ -41,9 +42,8 @@ export class ProductService {
     return this.collectionRef.add({ ...product })
   }
 
-  deleteProduct(id: string) {
-    return this.collectionRef.doc(id).delete()
-
-    //TODO delete image also
+  deleteProduct(product: Product) {
+    this.fileService.deleteFile(product.imageUrl)
+    return this.collectionRef.doc(product.id).delete()
   }
 }
