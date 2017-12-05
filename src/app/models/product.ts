@@ -1,3 +1,5 @@
+import { Link } from "@app/models/link.model";
+
 export class Product {
     name: string
     price: Number
@@ -8,4 +10,5 @@ export class Product {
     categoryId?: string
     instruction: string
     teaser: string
+    links: Link[]
 }

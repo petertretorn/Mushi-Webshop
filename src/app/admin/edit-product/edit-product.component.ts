@@ -8,6 +8,7 @@ import * as  firebase from 'firebase';
 import { FileService } from '@app/core/file.service';
 import { CategoryService } from '@app/core/category.service';
 import { Category } from '@app/models/category.model';
+import { Link } from '@app/models/link.model';
 
 @Component({
   selector: 'app-edit-product',
@@ -15,6 +16,9 @@ import { Category } from '@app/models/category.model';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
+
+  link: Link = new Link()
+
   uploadInProgress: Boolean
   file: File;
   product: Product = new Product();
@@ -49,6 +53,7 @@ export class EditProductComponent implements OnInit {
     this.productService.getProductById(id).subscribe(product => {
       this.product = product
       this.product.id = id
+      this.product.links = this.product.links || []
     })
   }
 
@@ -65,6 +70,16 @@ export class EditProductComponent implements OnInit {
         this.router.navigate(['admin/products-list'])
       })
     }
+  }
+  
+  addLink() {
+    this.product.links.push(this.link)
+    this.link = new Link()
+  }
+
+  deleteLink(link: Link) {
+    const index = this.product.links.indexOf(link)
+    this.product.links.splice(index, 1)
   }
 
   handleFile(event) {
