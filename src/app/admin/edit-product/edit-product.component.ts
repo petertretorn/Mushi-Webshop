@@ -63,13 +63,13 @@ export class EditProductComponent implements OnInit {
   saveProduct() {
     if (this.isNew) {
       this.productService.saveProduct(this.product).then(() => {
-        this.openSnackbar('Ny vare er gemt')
+        this.openSnackbar('Ny vare er gemt', null, 2000)
         this.router.navigate(['admin/products-list'])
       })
     } else {
       console.log('category: ' + this.product.categoryId)
       this.productService.updateProduct(this.product).then(() => {
-        this.openSnackbar('Rettelser er gemt')
+        this.openSnackbar('Rettelser er gemt', null, 2000)
         this.router.navigate(['admin/products-list'])
       })
     }
@@ -86,20 +86,18 @@ export class EditProductComponent implements OnInit {
   }
 
   deleteProduct(id) {
-    console.log('before sb')
-    const sb: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open('Er du Sikker?', 'SLET', { duration: 1500 })
-    const productName = this.product.name 
+    const sb: MatSnackBarRef<SimpleSnackBar> = this.openSnackbar('Er du Sikker?', 'SLET', 1500)
+    const productName = this.product.name
 
     sb.onAction().subscribe(() => {
       this.productService.deleteProduct(id).then(() => {
-        this.snackBar.open(`${productName} er nu slettet`, null, { duration: 1000 })
+        this.openSnackbar(`${productName} er nu slettet`, null, 1000)
         this.router.navigate(['admin/products-list'])
-      }
+      })
     })
   }
 
   handleFile(event) {
-
     if (!!this.product.imageUrl) {
       this.fileService.deleteFile(this.product.imageUrl)
     }
@@ -117,7 +115,7 @@ export class EditProductComponent implements OnInit {
     })
   }
 
-  openSnackbar(message: string) {
-    this.snackBar.open(message, 'SUCCES', { duration: 1000 })
+  openSnackbar(message: string, action: string, duration: number): MatSnackBarRef<SimpleSnackBar>{
+    return this.snackBar.open(message, action, { duration })
   }
 }
