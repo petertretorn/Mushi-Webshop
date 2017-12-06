@@ -33,13 +33,14 @@ export class ProductService {
 
   updateProduct(product: Product) {
     const json = JSON.stringify(product)
-
     const obj = JSON.parse(json)
     return this.collectionRef.doc(product.id).update({ ...obj })
   }
 
   saveProduct(product: Product) {
-    return this.collectionRef.add({ ...product })
+    const json = JSON.stringify(product)
+    const obj = JSON.parse(json)
+    return this.collectionRef.add({ ...obj })
   }
 
   deleteProduct(product: Product) {

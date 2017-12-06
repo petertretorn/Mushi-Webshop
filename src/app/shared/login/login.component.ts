@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { AuthService } from '@app/core/auth.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private thisDialogRef: MatDialogRef<LoginComponent>, 
     private authService: AuthService, 
+    private snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.authService.emailLogin(this.email, this.password)
       .then(resolve => this.router.navigate(['/admin/products-list']))
       .catch(error => {
+        this.snackBar.open("Forkert e-mail eller password", null, { duration: 2000 })
         console.log(`login failed : ${error.message}`)
       });
   }
