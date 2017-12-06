@@ -37,6 +37,8 @@ export class EditProductComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.product.links = []
+
     const id = this.route.snapshot.params.id;
 
     if (id === 'new') this.isNew = true
@@ -53,7 +55,6 @@ export class EditProductComponent implements OnInit {
     const subscription = this.productService.getProductById(id).subscribe(product => {
       this.product = product
       this.product.id = id
-      this.product.links = this.product.links || []
       subscription.unsubscribe()
     })
 
@@ -115,7 +116,7 @@ export class EditProductComponent implements OnInit {
     })
   }
 
-  openSnackbar(message: string, action: string, duration: number): MatSnackBarRef<SimpleSnackBar>{
+  openSnackbar(message: string, action: string, duration: number): MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message, action, { duration })
   }
 }

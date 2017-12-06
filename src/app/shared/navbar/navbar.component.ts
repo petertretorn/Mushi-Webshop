@@ -1,3 +1,4 @@
+import { AuthService } from '@app/core/auth.service';
 import { LoginComponent } from '@app/shared/login/login.component';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  isAdmin: boolean = false
+
+  constructor(private dialog: MatDialog, public auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      this.isAdmin = !!user && user.isAdmin
+    })
   }
 
   loginAdmin() {

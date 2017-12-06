@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap'
 interface User {
   uid: string;
   email: string;
+  isAdmin: boolean,
   photoURL?: string;
   displayName?: string;
   favoriteColor?: string;
@@ -38,25 +39,36 @@ export class AuthService {
   }
 
   emailLogin(email, password) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(resolved => {
+      return resolved.uid
+    }, rejected => {
+      throw new Error('authentication failed')
+    }).then(uid => {
+      this.afs.doc<User>(`users/${uid}`).valueChanges().subscribe(user => {
+        if (!user.isAdmin) throw new Error('Not admin user')
+        return "success admin user"
+      })
+    })
   }
 
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         console.log("logged in: " + credential)
-        // this.updateUserData(credential.user)
+        this.updateUserData(credential.user)
       })
   }
 
   private updateUserData(user) {
     // Sets user data to firestore on login
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`)
+
     const data: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      isAdmin: false
     }
 
     return userRef.set(data)

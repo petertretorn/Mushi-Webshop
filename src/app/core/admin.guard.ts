@@ -16,13 +16,15 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
+
+    console.log('inside canactivate')
     return this.authService.user
       .take(1)
       .map(user => !!user)
       .do(loggedIn => {
         if (!loggedIn) {
           console.log('access denied')
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         }
       })
   }
