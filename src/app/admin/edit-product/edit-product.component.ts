@@ -68,7 +68,6 @@ export class EditProductComponent implements OnInit {
         this.router.navigate(['admin/products-list'])
       })
     } else {
-      console.log('category: ' + this.product.categoryId)
       this.productService.updateProduct(this.product).then(() => {
         this.openSnackbar('Rettelser er gemt', null, 2000)
         this.router.navigate(['admin/products-list'])

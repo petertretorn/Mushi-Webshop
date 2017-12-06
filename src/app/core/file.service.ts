@@ -10,7 +10,8 @@ export class FileService {
   constructor() { }
 
   deleteFile(id: string) {
-
+    let storageRef = firebase.storage().ref();
+    storageRef.child(`${this.basePath}/${id}`).delete()
   }
   
   uploadFileToStorage(upload: File) {
@@ -36,16 +37,9 @@ export class FileService {
       (): any => {
         var url = uploadTask.snapshot.downloadURL;
         var name = upload.name;
-        // this.saveFileData({ url, name });
       }
     );
 
     return uploadTask
   }
-
-  private saveFileData(data) {
-    console.log('File saved!: ' + data.url, data.name);
-
-  }
-
 }
