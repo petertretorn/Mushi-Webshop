@@ -1,35 +1,38 @@
- /* html {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #333;
-    color: #fff;
-    font-size: 1.1em;
-    line-height: 1.5;
-    text-align: center;
-}
- */
  @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
  * {
      box-sizing: border-box;
      font-family: "Fredoka One", Verdana, sans-serif;
-     /* font-weight: lighter; */
  }
 
-/* html {
-    height: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background: rgb(94, 34, 34);
-    background: -moz-linear-gradient(top, rgba(240,249,255,1) 0%, rgba(161,219,255,1) 100%);
-    background: -webkit-linear-gradient(top, rgb(99, 25, 25) 50%,rgba(161,219,255,1) 100%); 
-    background: linear-gradient(to top, rgb(7, 58, 47) 0%,rgba(161,219,255,1) 100%); 
-    background-attachment: fixed;
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
 }
- */
-/* body{
-  background-color: transparent!important;
-     font-size: 1.1em;
-} */
+
+p,
+li,
+h1,
+h2,
+h3,
+h4 {
+  color: #4e4e4e;
+}
+
+body {
+  background: #f7f7f7;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 1em 0;
+}
+
+p {
+  margin: 0;
+  padding: 1em 0;
+}

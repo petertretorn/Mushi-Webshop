@@ -1,0 +1,46 @@
+#latest-work {
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 2px solid #e4e4e4;
+}
+
+#latest-work h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+#latest-work li {
+  width: 32%;
+  float: left;
+  list-style-type: none;
+}
+
+#latest-work li img {
+  width: 100%;
+  height: 100px;
+}
+
+#latest-work li:nth-child(2) {
+  margin: 0 2%;
+}
+
+#latest-work ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#latest-work h3 {
+  margin-bottom: 0px;
+}
+
+#latest-work p {
+  line-height: 1.6em;
+}
+
+p.tags {
+  color: #bbb;
+  font-size: 14px;
+  margin-top: 5px;
+}

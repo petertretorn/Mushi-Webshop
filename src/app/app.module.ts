@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from '@app/shared/login/login.component';
+import { ShopModule } from '@app/shop/shop.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoginComponent } from '@app/shared/login/login.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     CoreModule,
+    ShopModule
   ],
   entryComponents: [LoginComponent],
   providers: [],
