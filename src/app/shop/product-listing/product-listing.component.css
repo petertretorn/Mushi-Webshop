@@ -39,8 +39,6 @@
   line-height: 1.6em;
 }
 
-p.tags {
-  color: #bbb;
-  font-size: 14px;
-  margin-top: 5px;
+
+@media screen and (max-width: 600px) {
 }

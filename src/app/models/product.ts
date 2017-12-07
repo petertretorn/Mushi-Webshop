@@ -11,4 +11,5 @@ export class Product {
     instruction: string
     teaser: string
     links: Link[]
+    tags?: string[]
 }
