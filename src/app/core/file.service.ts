@@ -11,7 +11,9 @@ export class FileService {
 
   deleteFile(id: string) {
     let storageRef = firebase.storage().ref();
-    storageRef.child(`${this.basePath}/${id}`).delete()
+    storageRef.child(`${this.basePath}/${id}`).delete().then( res => {
+      console.log(`file delete: ${res}`)
+    })
   }
   
   uploadFileToStorage(upload: File) {

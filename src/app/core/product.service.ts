@@ -44,7 +44,7 @@ export class ProductService {
   }
 
   deleteProduct(product: Product) {
-    this.fileService.deleteFile(product.imageUrl)
+    this.fileService.deleteFile(product.imageFileName)
     return this.collectionRef.doc(product.id).delete()
   }
 }

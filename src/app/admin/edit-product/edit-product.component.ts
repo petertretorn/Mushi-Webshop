@@ -99,7 +99,7 @@ export class EditProductComponent implements OnInit {
 
   handleFile(event) {
     if (!!this.product.imageUrl) {
-      this.fileService.deleteFile(this.product.imageUrl)
+      this.fileService.deleteFile(this.product.imageFileName)
     }
 
     let file = event.target.files[0]
@@ -111,6 +111,7 @@ export class EditProductComponent implements OnInit {
 
     this.fileService.uploadFileToStorage(file).then(res => {
       this.product.imageUrl = res.metadata.downloadURLs[0]
+      this.product.imageFileName = name
       this.uploadInProgress = false
     })
   }
