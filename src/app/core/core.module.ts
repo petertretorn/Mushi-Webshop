@@ -6,12 +6,21 @@ import { ProductService } from '@app/core/product.service';
 import { AuthService } from '@app/core/auth.service';
 import { CategoryService } from './category.service';
 import { AdminGuard } from '@app/core/admin.guard';
+import { ShoppingCartService } from '@app/core/shopping-cart.service';
 
 @NgModule({
   imports: [
     CommonModule,
   ],
-  providers: [BlogService, ProductService, AuthService, FileService, CategoryService, AdminGuard],
+  providers: [
+    BlogService,
+    ShoppingCartService,
+    ProductService,
+    AuthService,
+    FileService,
+    CategoryService,
+    AdminGuard
+  ],
   declarations: []
 })
 export class CoreModule { }

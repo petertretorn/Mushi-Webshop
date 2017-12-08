@@ -1,3 +1,29 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.goto-link:hover {
+  cursor: pointer !important;
+} 
+
+.cart-badge {
+  background-color: red;
+  border-radius: 10px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  left: -10px;
+  top: -10px;
+  font-size: 0.8em;
+  padding: 5px !important;
+  line-height: 10px;
+  text-align: center;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 1000;
+  height: 45px;
+}

@@ -1,5 +1,5 @@
 import { Product } from './../../models/product';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '@app/core/product.service';
 
@@ -11,6 +11,7 @@ import { ProductService } from '@app/core/product.service';
 export class ProductCartComponent implements OnInit {
 
   @Input() product
+  @Output() onAdded = new EventEmitter<Product>()
 
   constructor(private router: Router) { }
 
@@ -21,6 +22,10 @@ export class ProductCartComponent implements OnInit {
   gotoProductPage(id) {
     console.log(`id: ${id}`)
     this.router.navigate(['/product-page', id])
+  }
+
+  addToCart(product: Product) {
+    this.onAdded.emit(product)
   }
 
 }

@@ -2,6 +2,8 @@ import { AuthService } from '@app/core/auth.service';
 import { LoginComponent } from '@app/shared/login/login.component';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ShoppingCartService } from '@app/core/shopping-cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +14,11 @@ export class NavbarComponent implements OnInit {
 
   isAdmin: boolean = false
 
-  constructor(private dialog: MatDialog, public auth: AuthService) { }
+  constructor(
+    private dialog: MatDialog,
+    public auth: AuthService, 
+    private  router: Router,
+    public cartService: ShoppingCartService) { }
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
@@ -28,5 +34,14 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
     })
+  }
+
+  gotoHome() {
+    console.log('clicking')
+    this.router.navigate(['/'])
+  }
+
+  gotoCart() {
+    this.router.navigate(['/cart'])
   }
 }

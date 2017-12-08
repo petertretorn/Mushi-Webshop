@@ -1,0 +1,11 @@
+<div class="container">
+  <h3>Din indkøbskurv</h3>
+  <div>
+    <mat-card *ngFor="let item of cartService.items">
+      <mat-card-content>
+        {{ item.product.name }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button class="check-out-button" mat-raised-button (click)="checkOut()">CHECK UD</button>
+</div>

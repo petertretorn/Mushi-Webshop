@@ -3,7 +3,7 @@
   <h2>Vores Sortiment</h2>
   <ul>
     <li *ngFor="let product of products">
-      <app-product-cart [product]="product"></app-product-cart>
+      <app-product-cart (onAdded)="addToCart($event)" [product]="product"></app-product-cart>
     </li>
   </ul>
 </section>

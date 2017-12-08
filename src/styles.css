@@ -23,6 +23,10 @@
  body {
    background: #f7f7f7;
  }
+
+ .app-container {
+  margin-top: 45px;
+}
 /* 
  h1,
  h2,
