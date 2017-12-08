@@ -1,13 +1,20 @@
-<div class="product-image" [ngStyle]="{'background-image': 'url(' + product.imageUrl + ')'}">
+<div class="my-card" (click)="gotoProductPage(product.id)">
+  <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.imageUrl + ')'}">
 
-</div>
-<h3>{{ product.name }}</h3>
-
-<div class="tags-container">
-  <div>
-    <span class="tags" *ngFor="let tag of product.tags">{{tag}} </span>
   </div>
+  <h3>{{ product.name }}</h3>
+
+  <div class="tags-container">
+    <div>
+      <span class="tags" *ngFor="let tag of product.tags">{{tag}} </span>
+    </div>
+  </div>
+
+  <p>{{ product.teaser }}</p>
+
 </div>
 
-<p>{{ product.teaser }}</p>
-<button mat-raised-button><mat-icon>add_shopping_cart</mat-icon>TILFØJ</button>
+<button mat-raised-button>
+  <mat-icon>add_shopping_cart</mat-icon>
+  TILFØJ
+</button>

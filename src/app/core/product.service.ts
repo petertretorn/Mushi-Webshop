@@ -7,7 +7,7 @@ import { FileService } from '@app/core/file.service';
 
 @Injectable()
 export class ProductService {
-
+  //chrome://flags/#enable-quic
   collectionRef: AngularFirestoreCollection<Product>
   product: Observable<Product>;
 

@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <h2>{{ product.name }}</h2>
+    </mat-card-header>
+    <img mat-card-image [src]="product.imageUrl" alt="Photo of a Shiba Inu">
+  </mat-card>
+  <mat-card-content>
+    <h3 class="header">Beskrivelse</h3>
+    <p [innerHTML]="product.description">
+
+    </p>
+    <h3 class="header">Vejledning</h3>
+    <p [innerHTML]="product.instruction">
+
+    </p>
+  </mat-card-content>
+</div>

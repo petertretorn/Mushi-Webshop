@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
     this.productService.getProducts().subscribe(products => {
       this.products = products
       console.log('got products')
+      console.log(`product 1: ${products[0].name}`)
     })
   }
 

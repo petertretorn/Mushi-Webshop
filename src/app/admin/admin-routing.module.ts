@@ -8,11 +8,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 
-  /*   { path: '', redirectTo: '/products-list', pathMatch: 'full' },
-    { path: 'create-blog', component: CreateBlogComponent },
-    { path: 'edit-product/:id', component: EditProductComponent },
-    { path: 'blogs-list', component: BlogsListComponent },
-    { path: 'products-list', component: ProductsListComponent }, */
   {
     path: '',
     component: MainComponent,
