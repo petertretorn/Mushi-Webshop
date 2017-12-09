@@ -4,7 +4,7 @@
   <span *ngIf="isAdmin">Administrator</span>
   <mat-icon class="goto-link" (click)="gotoCart()" *ngIf="!isAdmin">shopping_cart</mat-icon>
   <div class="badge-container">
-    <div [style.visibility]="cartService.displayBadgeStyle()" class="cart-badge">{{ cartService.items.length }}</div>
+    <div [style.visibility]="cartService.displayBadgeStyle()" class="cart-badge">{{ cartService.cart.size }}</div>
   </div>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>

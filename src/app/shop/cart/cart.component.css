@@ -1,7 +1,27 @@
-h3 {
-    margin-top: 30px
-}
+
 
 .check-out-button {
     margin-top: 30px;
+}
+
+.cart {
+    margin-top: 100px;
+}
+
+mat-card-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    flex: 0 1 70%;
+}
+
+.quantity {
+    flex: 0 1 10%;
+}
+
+.total {
+    flex: 0 1 20%;
+    text-align: right;
 }

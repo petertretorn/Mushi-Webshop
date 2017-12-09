@@ -2,8 +2,8 @@ import { Link } from "@app/models/link.model";
 
 export class Product {
     name: string
-    price: Number
-    quantity: Number
+    price: number
+    quantity: number
     description: string
     id?: string
     imageUrl: string

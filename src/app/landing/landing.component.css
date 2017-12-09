@@ -14,7 +14,7 @@
 
 .teaser {
   text-align: center;
-  height: 100vh;
+  height: 50vh;
 }
 
 .content {
@@ -27,7 +27,7 @@
   position: absolute;
   background-image: url('/assets/images/sunset-forest-woods-birch.jpg');
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,11 +1,25 @@
 <div class="container">
-  <h3>Din indkøbskurv</h3>
-  <div>
-    <mat-card *ngFor="let item of cartService.items">
-      <mat-card-content>
-        {{ item.product.name }}
-      </mat-card-content>
-    </mat-card>
+  <div class="cart">
+    <h3>Din indkøbskurv</h3>
+    <div>
+      <mat-card *ngFor="let line of lines">
+        <mat-card-content>
+          <span class="name">
+            {{ line.product.name }}
+          </span>
+          <span class="quantity">
+            {{ line.quantity }}
+          </span>
+          <span class="total">
+            {{ line.quantity * line.product.price }}
+          </span>
+        </mat-card-content>
+      </mat-card>
+      <p>
+        Samlet pris kr. {{ total }}
+      </p>
+    </div>
+    <button class="check-out-button" mat-raised-button (click)="checkOut()">CHECK UD</button>
   </div>
-  <button class="check-out-button" mat-raised-button (click)="checkOut()">CHECK UD</button>
+
 </div>
