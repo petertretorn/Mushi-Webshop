@@ -21,7 +21,7 @@
   height: 100px;
 }
 
-#latest-work li:nth-child(2) {
+#latest-work li:nth-child(3n + 2) {
   margin: 0 2%;
 }
 

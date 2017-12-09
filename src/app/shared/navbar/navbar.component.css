@@ -6,6 +6,10 @@
   cursor: pointer !important;
 } 
 
+.badge-container {
+  position: relative;
+}
+
 .cart-badge {
   background-color: red;
   border-radius: 10px;
@@ -15,9 +19,9 @@
   left: -10px;
   top: -10px;
   font-size: 0.8em;
-  padding: 5px !important;
-  line-height: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 mat-toolbar {

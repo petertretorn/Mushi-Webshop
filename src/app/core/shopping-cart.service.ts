@@ -12,4 +12,8 @@ export class ShoppingCartService {
     console.log('adding to cart: ' + product.name)
     this.items.push( { quantity: 1, product })
   }
+
+  displayBadgeStyle() {
+    return this.items.length === 0 ? 'hidden' : 'visible'
+  }
 }

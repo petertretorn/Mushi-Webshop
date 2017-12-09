@@ -23,13 +23,15 @@ export class ProductPageComponent implements OnInit {
       this.product.id = id
       subscription.unsubscribe()
 
+      this.product.description = !!this.product.description
+        ? this.product.description.replace(new RegExp('\n', 'g'), "<br />")
+        : ''
+
       this.product.instruction = !!this.product.instruction
         ? this.product.instruction.replace(new RegExp('\n', 'g'), "<br />")
         : ''
 
-      this.product.instruction = !!this.product.description
-        ? this.product.description.replace(new RegExp('\n', 'g'), "<br />")
-        : ''
+
     })
   }
 
