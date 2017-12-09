@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from '@app/shared/navbar/navbar.component';
 import { LoginComponent } from '@app/shared/login/login.component';
-import { AppRoutingModule } from '@app/app-routing.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { AppRoutingModule } from '@app/app-routing.module';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    AppRoutingModule
+    RouterModule
   ],
   declarations: [
     NavbarComponent,
@@ -25,11 +25,12 @@ import { AppRoutingModule } from '@app/app-routing.module';
   exports: [
     FormsModule,
     CommonModule,
-    AppRoutingModule,
+    RouterModule,
     MaterialModule,
     FlexLayoutModule,
     NavbarComponent,
     LoginComponent
+    
   ]
 })
 export class SharedModule {

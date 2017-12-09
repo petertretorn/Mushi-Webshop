@@ -22,6 +22,7 @@ interface User {
 export class AuthService {
 
   user: Observable<User>;
+  isSignedIn: boolean = false
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
 
@@ -29,6 +30,7 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
+          this.isSignedIn = true
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
         } else {
           return Observable.of(null)
@@ -79,6 +81,8 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
+      console.log('signed out')
+      this.isSignedIn = false
       this.router.navigate(['/']);
     });
   }

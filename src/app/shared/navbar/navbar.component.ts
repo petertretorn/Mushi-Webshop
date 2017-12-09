@@ -13,6 +13,7 @@ import { ShoppingCartService } from '@app/core/shopping-cart.service';
 export class NavbarComponent implements OnInit {
 
   isAdmin: boolean = false
+  isAuthenticated: boolean = false
 
   constructor(
     private dialog: MatDialog,
@@ -22,7 +23,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      this.isAdmin = !!user && user.isAdmin
+      if (user) {
+        console.log('inside subscriber!!!')
+        this.isAdmin = user.isAdmin
+      }
     })
   }
 
@@ -44,4 +48,10 @@ export class NavbarComponent implements OnInit {
   gotoCart() {
     this.router.navigate(['/cart'])
   }
+
+  signOut() {
+    this.auth.signOut()
+    this.isAdmin = false;
+  }
+  
 }
