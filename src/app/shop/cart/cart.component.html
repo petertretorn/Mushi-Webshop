@@ -4,22 +4,25 @@
     <div>
       <mat-card *ngFor="let line of lines">
         <mat-card-content>
-          <span class="name">
+          <div class="name">
             {{ line.product.name }}
-          </span>
-          <span class="quantity">
-            {{ line.quantity }}
-          </span>
-          <span class="total">
-            {{ line.quantity * line.product.price }}
-          </span>
+          </div>
+          <div class="quantity">
+            <span>{{ line.quantity }} </span>{{ line.quantity > 1 ? ' stykker' : ' styk' }}&nbsp;
+            <span>á</span>&nbsp;
+            <span>{{ line.product.price }}</span>
+          </div>
+          <div class="total">
+            <span>kr. </span>{{ line.quantity * line.product.price }}
+          </div>
         </mat-card-content>
       </mat-card>
       <p>
-        Samlet pris kr. {{ total }}
+        Samlet pris kr.&nbsp;{{ total }}
       </p>
     </div>
-    <button class="check-out-button" mat-raised-button (click)="checkOut()">CHECK UD</button>
+    <a class="check-out-button" mat-raised-button [routerLink]="['/check-out']">CHECK UD</a>
+    <a class="check-out-button" mat-raised-button [routerLink]="['/']">TILBAGE</a>
   </div>
 
 </div>

@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div *ngIf="!isAuthenticated">
+    <div>
+      <p>Med hvilken konto ønsker du at registrere dig hos Mushi Mushi?</p>
+      <div>
+        <button mat-raised-button (click)="signInGoogle()">GOOGLE</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!!isAuthenticated">
+    <p>Anfør dit navn og addressen du ønsker leveret til</p>
+
+    <form>
+      <div class="flex-container">
+        <mat-input-container>
+          <input [(ngModel)]="fullName" name="fullName" matInput placeholder="Dit fulde navn">
+        </mat-input-container>
+
+        <mat-input-container>
+          <input [(ngModel)]="street" name="street" matInput placeholder="Vejnavn og nummer">
+        </mat-input-container>
+
+        <mat-input-container>
+          <input [(ngModel)]="zipAndCity" name="zipAndCity" matInput placeholder="Postnummer og by">
+        </mat-input-container>
+      </div>
+    </form>
+
+    <button mat-raised-button color="primary" (click)="gotoPayment()">GÅ TIL BETALING</button>
+  </div>
+
+</div>

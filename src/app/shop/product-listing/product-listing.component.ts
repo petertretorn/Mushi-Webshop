@@ -1,4 +1,3 @@
-import { CategoryService } from './../../core/category.service';
 import { ProductService } from '@app/core/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '@app/models/product';
@@ -25,11 +24,11 @@ export class ProductListingComponent implements OnInit {
   ngOnInit() {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories
-    })
 
-    this.productService.getProducts().subscribe(products => {
-      this.products = products
-      this.addCategories(this.products)
+      this.productService.getProducts().subscribe(products => {
+        this.products = products
+        this.addCategories(this.products)
+      })
     })
   }
 

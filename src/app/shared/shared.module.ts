@@ -7,6 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from '@app/shared/navbar/navbar.component';
 import { LoginComponent } from '@app/shared/login/login.component';
+import { AppRoutingModule } from '@app/app-routing.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { LoginComponent } from '@app/shared/login/login.component';
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   declarations: [
     NavbarComponent,
@@ -23,6 +25,7 @@ import { LoginComponent } from '@app/shared/login/login.component';
   exports: [
     FormsModule,
     CommonModule,
+    AppRoutingModule,
     MaterialModule,
     FlexLayoutModule,
     NavbarComponent,

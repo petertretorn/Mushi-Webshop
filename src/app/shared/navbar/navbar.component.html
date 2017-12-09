@@ -2,6 +2,7 @@
   <span class="goto-link" (click)="gotoHome()">Mushi Mushi</span>
   <span class="example-spacer"></span>
   <span *ngIf="isAdmin">Administrator</span>
+  <span *ngIf="auth.user | async; let user">{{ user.displayName }}&nbsp;&nbsp;</span>
   <mat-icon class="goto-link" (click)="gotoCart()" *ngIf="!isAdmin">shopping_cart</mat-icon>
   <div class="badge-container">
     <div [style.visibility]="cartService.displayBadgeStyle()" class="cart-badge">{{ cartService.cart.size }}</div>

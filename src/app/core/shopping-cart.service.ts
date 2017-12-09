@@ -22,4 +22,14 @@ export class ShoppingCartService {
   displayBadgeStyle() {
     return this.cart.size === 0 ? 'hidden' : 'visible'
   }
+
+  totalAmount() {
+    let total: number = 0
+    
+    this.cart.forEach( (line, key) => {
+      total += line.quantity * line.product.price
+    })
+
+    return total
+  }
 }
