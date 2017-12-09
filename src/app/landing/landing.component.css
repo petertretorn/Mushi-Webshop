@@ -20,7 +20,7 @@
 .content {
   padding: 0 20%;
   font-size: 1.4em;
-  color: #000;
+  color: #000 !important;
 }
 
 .teaser .bg-image {

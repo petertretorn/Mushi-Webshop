@@ -13,4 +13,5 @@ export class Product {
     teaser: string
     links: Link[]
     tags?: string[]
+    category?: string
 }
