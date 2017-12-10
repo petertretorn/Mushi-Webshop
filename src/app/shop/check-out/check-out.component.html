@@ -12,7 +12,7 @@
   </div>
 
   <div *ngIf="!!isAuthenticated">
-    <p>Anfør dit navn og addressen du ønsker leveret til</p>
+    <p>Anfør navn og addressen du ønsker leveret til</p>
 
     <form>
       <div class="flex-container">
@@ -30,7 +30,8 @@
       </div>
     </form>
 
-    <button mat-raised-button color="primary" (click)="openStripeDialog()">GÅ TIL BETALING</button>
+    <button mat-raised-button color="accent" (click)="openStripeDialog()">BETAL</button>
+    <a class="check-out-button"color="warn" mat-raised-button [routerLink]="['/']">ANNULÈR</a>
   </div>
 
 </div>
