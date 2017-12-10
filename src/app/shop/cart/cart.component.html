@@ -1,34 +1,41 @@
 <div class="container">
-  <div class="cart">
-    <h3>Din indkøbskurv</h3>
-    <div>
-      <mat-card *ngFor="let line of lines">
-        <mat-card-content>
-          <div class="name">
-            {{ line.product.name }}
-          </div>
-          <div class="quantity">
-            <span>{{ line.quantity }} </span>{{ line.quantity > 1 ? ' stykker' : ' styk' }}&nbsp;
-            <span>á</span>&nbsp;
-            <span>{{ line.product.price }}</span>
-          </div>
-          <div class="total">
-            <span>kr. </span>{{ line.quantity * line.product.price }}
-          </div>
-          <div (click)=removeLine(line.product.id) class="delete hover">&nbsp;
-            <mat-icon>delete</mat-icon>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <p>
-        Samlet pris kr.&nbsp;{{ total }}
-      </p>
-    </div>
-    <a class="check-out-button" mat-raised-button color="accent" [routerLink]="['/check-out']">TJEK UD</a>
-    <a class="check-out-button" mat-raised-button [routerLink]="['/']">TILBAGE</a>
-    <button class="check-out-button" mat-raised-button color="warn" (click)="clearCart()">
+  <div class="cart" *ngIf="lines.length > 0">
+    <h3>Indkøbskurv</h3>
+    <mat-list *ngFor="let line of lines">
+      <mat-list-item>
+        <div class="name">
+          {{ line.product.name }}
+        </div>
+        <div class="quantity">
+          <span>{{ line.quantity }} </span>{{ line.quantity > 1 ? ' stykker' : ' styk' }}&nbsp;
+          <span>á</span>&nbsp;
+          <span>{{ line.product.price }}</span>
+        </div>
+        <div class="total">
+          <span>kr. </span>{{ line.quantity * line.product.price }}
+        </div>
+        <div (click)=removeLine(line.product.id) class="delete hover">&nbsp;
+          <mat-icon>delete</mat-icon>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+
+  <div>
+    <p *ngIf="lines.length > 0">
+      Samlet pris kr.&nbsp;{{ total }}
+    </p>
+    <h3 *ngIf="lines.length === 0">
+      Din kurv er tom
+    </h3>
+    <a *ngIf="lines.length > 0" class="check-out-button" mat-raised-button color="accent" [routerLink]="['/check-out']">TJEK UD</a>
+
+    <button *ngIf="lines.length > 0" class="check-out-button" mat-raised-button color="warn" (click)="clearCart()">
       <mat-icon>delete_forever</mat-icon>
-      RYD KURV
+      RYD
     </button>
+
+    <a class="check-out-button" mat-raised-button [routerLink]="['/']">TILBAGE</a>
   </div>
 </div>
