@@ -1,7 +1,6 @@
 @media (max-width: 500px) {
   .content {
     padding: 0 5%;
-    font-size: 1.4em;
   }
 }
 
@@ -39,12 +38,6 @@
   padding-top: 10%;
   padding-bottom: 0;
   font-size: 1.5em;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 #quote {

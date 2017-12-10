@@ -25,52 +25,39 @@
  }
 
  .app-container {
-  margin-top: 45px;
-}
-/* 
- h1,
- h2,
- h3 {
-   margin: 0;
-   padding: 1em 0;
+   margin-top: 45px;
  }
- */
+
  p {
    margin: 0;
    padding: 1em 0;
  }
 
-.hover:hover {
-  cursor: pointer;
-}
+ .hover:hover {
+   cursor: pointer;
+ }
 
  @media screen and (max-width: 600px) {
-
    #latest-work {
      text-align: center;
    }
-
    #latest-work li {
      width: 80% !important;
      margin: 30px 10% !important;
      text-align: center;
    }
-
    #quote {
      font-size: 16px;
      font-weight: bold;
    }
-
    footer ul {
      width: 100% !important;
      float: none;
      border-top: 2px solid #333;
    }
-
    footer {
-       text-align: center;
+     text-align: center;
    }
-
    footer ul li {
      width: 100% !important;
    }

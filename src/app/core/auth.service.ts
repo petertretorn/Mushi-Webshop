@@ -1,4 +1,3 @@
-import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
@@ -17,7 +16,7 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
 
-    //// Get auth data, then get firestore user document || null
+    // Get auth data, then get firestore user document || null
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
@@ -42,7 +41,6 @@ export class AuthService {
     }).then(uid => {
       this.afs.doc<User>(`users/${uid}`).valueChanges().subscribe(user => {
         if (!user.isAdmin) throw new Error('Not admin user')
-        return "success admin user"
       })
     })
   }
