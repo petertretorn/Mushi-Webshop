@@ -9,6 +9,16 @@ export class ShoppingCartService {
 
   constructor() { }
 
+  getLines() {
+    const lines: OrderLine[] = []
+
+    this.cart.forEach((line, key) => {
+      lines.push(line)
+    })
+
+    return lines
+  }
+
   addToCart(product: Product) {
 
     if (!this.cart.get(product.name)) {
@@ -17,6 +27,10 @@ export class ShoppingCartService {
     } else {
       this.cart.get(product.name).quantity++
     }
+  }
+
+  clearCart() {
+    this.cart.clear()
   }
 
   displayBadgeStyle() {

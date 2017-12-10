@@ -11,7 +11,7 @@ import { ShoppingCartService } from '@app/core/shopping-cart.service';
 })
 export class CartComponent implements OnInit {
 
-  lines: OrderLine[] = []
+  lines: OrderLine[]
 
   total: number
 
@@ -22,9 +22,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.cartService.cart.forEach((line, key) => {
-      this.lines.push(line)
-    })
+    this.lines = this.cartService.getLines()
 
     this.total = this.cartService.totalAmount()
   }
