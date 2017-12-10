@@ -37,6 +37,7 @@ export class CheckOutComponent implements OnInit {
 
     this.authService.user.subscribe(user => {
       if (user) {
+        console.log('fullname: ' + user.fullName)
         this.user = user
         this.fullName = user.fullName || ''
         this.street = user.street || ''
@@ -53,6 +54,12 @@ export class CheckOutComponent implements OnInit {
       console.log('auth success')
     }, () => {
       console.log('auth failed')
+    })
+  }
+
+  signInFacebook() {
+    this.authService.facebookLogin().then(() => {
+      console.log('auth success')
     })
   }
 

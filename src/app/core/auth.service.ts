@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap'
 import { User } from '@app/models/user.model';
 
-
 @Injectable()
 export class AuthService {
 
@@ -33,6 +32,11 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
+  facebookLogin() {
+    const provider = new firebase.auth.FacebookAuthProvider()
+    return this.oAuthLogin(provider);
+  }
+
   emailLogin(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(resolved => {
       return resolved.uid
@@ -54,18 +58,11 @@ export class AuthService {
   }
 
   public updateUserData(user: User) {
-    // Sets user data to firestore on login
+
+    console.log('user uid: ' + user.uid)
+    console.log('user: ' + user, Object.keys(user))
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`)
-
-    /* const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      isAdmin: false  
-    } */
-
-    return userRef.set(user)
+    return userRef.set(JSON.parse(JSON.stringify(user)), { merge: true })
   }
 
   signOut() {

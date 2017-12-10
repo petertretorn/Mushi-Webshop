@@ -12,7 +12,6 @@ import { AddressInfo } from '@app/models/addressInfo.model';
 export class PaymentService {
 
   addressInfo: AddressInfo
-  total: number
   user: User
   handler: any
   paymentRef: AngularFirestoreCollection<Payment>;
@@ -22,8 +21,7 @@ export class PaymentService {
     private db: AngularFirestore,
     private cartService: ShoppingCartService,
     private orderService: OrderService) {
-
-    this.total = this.cartService.totalAmount() * 100
+    
     this.paymentRef = this.db.collection('payments')
   }
 
@@ -31,32 +29,23 @@ export class PaymentService {
 
     this.user = user
 
+    const total = this.cartService.totalAmount() * 100
+
     this.handler = StripeCheckout.configure({
       key: environment.stripe,
       image: '/assets/images/chagabaggrund.jpg',
       locale: 'da',
       token: token => {
-        this.processPayment(token, this.total)
+        this.processPayment(token, total)
       }
     });
   }
 
   processPayment(token, amount) {
-    if (!this.user) {
-      console.log('cannot process payment, unauthenticated')
-      return
-    }
-
     const payment = { token, amount }
-
     this.paymentRef.doc(this.user.uid).set(payment)
 
-    console.log('stripe callback')
-    console.log(`token : ${token}`)
-    console.log(`amount : ${amount}`)
-
     this.handleOrder()
-
     this.cartService.cart.clear()
   }
 
