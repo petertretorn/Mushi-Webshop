@@ -37,7 +37,6 @@ export class CheckOutComponent implements OnInit {
 
     this.authService.user.subscribe(user => {
       if (user) {
-        console.log('fullname: ' + user.fullName)
         this.user = user
         this.fullName = user.fullName || ''
         this.street = user.street || ''

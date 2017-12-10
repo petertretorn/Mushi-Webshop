@@ -10,7 +10,7 @@ import { AddressInfo } from '@app/models/addressInfo.model';
 
 @Injectable()
 export class PaymentService {
-
+  total: number;
   addressInfo: AddressInfo
   user: User
   handler: any
@@ -28,8 +28,8 @@ export class PaymentService {
   setUpStripe(user: User) {
 
     this.user = user
-
     const total = this.cartService.totalAmount() * 100
+    this.total = total
 
     this.handler = StripeCheckout.configure({
       key: environment.stripe,
@@ -63,7 +63,8 @@ export class PaymentService {
       uid: this.user.uid,
       shipping: this.addressInfo,
       paid: false,
-      processed: false
+      processed: false,
+      total: this.total
     }
 
     this.orderService.createOrder(order).then(res => {

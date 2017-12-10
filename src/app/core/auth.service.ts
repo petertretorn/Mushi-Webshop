@@ -52,22 +52,18 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        console.log("logged in: " + credential)
         this.updateUserData(credential.user)
       })
   }
 
   public updateUserData(user: User) {
 
-    console.log('user uid: ' + user.uid)
-    console.log('user: ' + user, Object.keys(user))
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`)
     return userRef.set(JSON.parse(JSON.stringify(user)), { merge: true })
   }
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      console.log('signed out')
       this.isSignedIn = false
       this.router.navigate(['/']);
     });
