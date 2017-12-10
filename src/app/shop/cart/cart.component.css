@@ -14,7 +14,7 @@ mat-card-content {
 }
 
 .name {
-    flex: 0 1 60%;
+    flex: 0 1 55%;
 }
 
 .quantity {
@@ -22,6 +22,11 @@ mat-card-content {
 }
 
 .total {
-    flex: 0 1 20%;
+    flex: 0 1 15%;
+    text-align: right;
+}
+
+.delete {
+    flex: 0 1 10%;
     text-align: right;
 }

@@ -21,10 +21,22 @@ export class CartComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
+    this.updateCartData()
+  }
 
+  updateCartData() {
     this.lines = this.cartService.getLines()
-
     this.total = this.cartService.totalAmount()
+  }
+
+  removeLine(productId) {
+    this.cartService.removeLine(productId)
+    this.updateCartData()
+  }
+
+  clearCart() {
+    this.cartService.cart.clear()
+    this.updateCartData()
   }
 
 }

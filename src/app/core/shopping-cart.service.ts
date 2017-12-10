@@ -21,16 +21,20 @@ export class ShoppingCartService {
 
   addToCart(product: Product) {
 
-    if (!this.cart.get(product.name)) {
+    if (!this.cart.get(product.id)) {
       const orderLine = new OrderLine(product, 1)
-      this.cart.set(product.name, orderLine)
+      this.cart.set(product.id, orderLine)
     } else {
-      this.cart.get(product.name).quantity++
+      this.cart.get(product.id).quantity++
     }
   }
 
   clearCart() {
     this.cart.clear()
+  }
+
+  removeLine(id: string) {
+    this.cart.delete(id)
   }
 
   displayBadgeStyle() {

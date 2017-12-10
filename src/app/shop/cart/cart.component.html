@@ -15,14 +15,20 @@
           <div class="total">
             <span>kr. </span>{{ line.quantity * line.product.price }}
           </div>
+          <div (click)=removeLine(line.product.id) class="delete hover">&nbsp;
+            <mat-icon>delete</mat-icon>
+          </div>
         </mat-card-content>
       </mat-card>
       <p>
         Samlet pris kr.&nbsp;{{ total }}
       </p>
     </div>
-    <a class="check-out-button" mat-raised-button [routerLink]="['/check-out']">CHECK UD</a>
+    <a class="check-out-button" mat-raised-button color="accent" [routerLink]="['/check-out']">TJEK UD</a>
     <a class="check-out-button" mat-raised-button [routerLink]="['/']">TILBAGE</a>
+    <button class="check-out-button" mat-raised-button color="warn" (click)="clearCart()">
+      <mat-icon>delete_forever</mat-icon>
+      RYD KURV
+    </button>
   </div>
-
 </div>

@@ -7,6 +7,8 @@ import { AuthService } from '@app/core/auth.service';
 import { CategoryService } from './category.service';
 import { AdminGuard } from '@app/core/admin.guard';
 import { ShoppingCartService } from '@app/core/shopping-cart.service';
+import { OrderService } from './order.service';
+import { PaymentService } from './payment.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { ShoppingCartService } from '@app/core/shopping-cart.service';
     AuthService,
     FileService,
     CategoryService,
-    AdminGuard
+    AdminGuard,
+    OrderService,
+    PaymentService
   ],
   declarations: []
 })

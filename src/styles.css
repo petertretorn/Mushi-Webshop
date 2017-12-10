@@ -40,6 +40,10 @@
    padding: 1em 0;
  }
 
+.hover:hover {
+  cursor: pointer;
+}
+
  @media screen and (max-width: 600px) {
 
    #latest-work {
