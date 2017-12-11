@@ -42,10 +42,12 @@ export class PaymentService {
   }
 
   processPayment(token, amount) {
-    const payment = { token, amount }
-    this.paymentRef.doc(this.user.uid).set(payment)
+    this.cartService.cart.clear()
 
-    this.handleOrder()
+    this.handleOrder().then(orderId => {
+      const payment = { orderId, token, amount, userId: this.user.uid }
+      this.paymentRef.add(payment)
+    })
     this.cartService.cart.clear()
   }
 
@@ -62,16 +64,17 @@ export class PaymentService {
       lines: this.cartService.getLines(),
       uid: this.user.uid,
       shipping: this.addressInfo,
-      paid: false,
-      processed: false,
+      status: 'not paid',
       total: this.total
     }
 
-    this.orderService.createOrder(order).then(res => {
+    return this.orderService.createOrder(order).then(res => {
       this.user.orders = this.user.orders || []
       this.user.orders.push(res.id);
 
       this.authService.updateUserData(this.user)
+
+      return res.id
     })
   }
 }

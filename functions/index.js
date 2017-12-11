@@ -11,10 +11,41 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 const stripe = require('stripe')(functions.config().stripe.testkey)
 
 exports.stripeCharge = functions.firestore
-  .document('/payments/{userId}/{paymentId}')
+  .document('/payments/{paymentId}')
   .onCreate(event => {
     const payment = event.data.data()
-    const userId = event.params.userId;
+    const userId = payment.userId;
+    const orderId = payment.orderId;
+
+    const paymentId = event.params.paymentId;
+
+    // checks if payment exists or if it has already been charged
+
+    const amount = payment.amount;
+    const idempotency_key = paymentId; // prevent duplicate charges
+    const source = payment.token.id;
+    const currency = 'dkk';
+    const charge = {
+      amount,
+      currency,
+      source
+    };
+    stripe.charges.create(charge, {
+      idempotency_key
+    }).then(charge => {
+      console.log('charge received')
+      admin.firestore()
+      .collection('orders')
+      .doc(orderId)
+      .update({ status: 'paid'}, { merge: true});
+    })
+  })
+
+/* exports.stripeCharge = functions.firestore
+  .document('/payments/{paymentId}')
+  .onCreate(event => {
+    const payment = event.data.data()
+    const userId = payment.userId;
     const paymentId = event.params.paymentId;
 
     // checks if payment exists or if it has already been charged
@@ -25,7 +56,7 @@ exports.stripeCharge = functions.firestore
       .doc(userId)
       .get()
       .then(doc => {
-        console.log('got data: ' + data.displayName)
+        console.log('got data');
         return doc.data();
       })
       .then(customer => {
@@ -44,10 +75,10 @@ exports.stripeCharge = functions.firestore
       })
       .then(charge => {
         admin.firestore()
-          .doc(`/payments/${userId}/${paymentId}/charge`)
+          .doc(`/payments/${paymentId}/charge`)
           .set(charge)
       })
-  });
+  });  */
 
 
 exports.firestoreEmail = functions.firestore
