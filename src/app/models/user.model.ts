@@ -7,6 +7,7 @@ export interface User {
     fullName?: string
     street?: string
     zipAndCity?: string
+    recipientMail: string
     orders?: string[]
   }
   

@@ -23,6 +23,7 @@ export class CheckOutComponent implements OnInit {
   fullName: string
   street: string
   zipAndCity: string
+  recipientMail: string
 
   total: number = 0
 
@@ -41,6 +42,7 @@ export class CheckOutComponent implements OnInit {
         this.fullName = user.fullName || ''
         this.street = user.street || ''
         this.zipAndCity = user.zipAndCity || ''
+        this.recipientMail = user.recipientMail || ''
         this.isAuthenticated = true
 
         this.paymentService.setUpStripe(user)
@@ -66,7 +68,8 @@ export class CheckOutComponent implements OnInit {
     const addressInfo: AddressInfo = {
       fullName: this.fullName,
       street: this.street,
-      zipAndCity: this.zipAndCity
+      zipAndCity: this.zipAndCity,
+      recipientMail: this.recipientMail
     }
     this.paymentService.setAddress(addressInfo)
 
