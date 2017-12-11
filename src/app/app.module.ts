@@ -14,6 +14,7 @@ import { LoginComponent } from '@app/shared/login/login.component';
 import { ShopModule } from '@app/shop/shop.module';
 import { LandingComponent } from '@app/landing/landing.component';
 import { AppRoutingModule } from '@app/app-routing.module';
+import { InfoModule } from '@app/info/info.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AppRoutingModule } from '@app/app-routing.module';
     AngularFireAuthModule,
     AngularFirestoreModule,
     CoreModule,
-    ShopModule
+    ShopModule,
+    InfoModule
   ],
   entryComponents: [LoginComponent, LandingComponent],
   providers: [],

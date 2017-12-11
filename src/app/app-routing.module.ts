@@ -5,6 +5,7 @@ import { ProductPageComponent } from '@app/shop/product-page/product-page.compon
 import { CartComponent } from '@app/shop/cart/cart.component';
 import { CheckOutComponent } from '@app/shop/check-out/check-out.component';
 import { LandingComponent } from '@app/landing/landing.component';
+import { FungiInfoComponent } from '@app/info/fungi-info/fungi-info.component';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'check-out', component: CheckOutComponent },
   { path: 'product-page/:id', component: ProductPageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
-  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AdminGuard] }
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AdminGuard] },
+  { path: 'info/fungi', component: FungiInfoComponent}
 ];
 
 @NgModule({
