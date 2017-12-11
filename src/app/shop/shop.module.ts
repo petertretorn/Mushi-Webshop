@@ -7,6 +7,7 @@ import { ProductCartComponent } from './product-cart/product-cart.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
     SharedModule
   ],
   exports: [ProductCartComponent, ProductListingComponent],
-  declarations: [ProductListingComponent, ProductCartComponent, ProductPageComponent, CartComponent, CheckOutComponent],
+  declarations: [ProductListingComponent, ProductCartComponent, ProductPageComponent, CartComponent, CheckOutComponent, ThankYouComponent],
   providers: []
 })
 export class ShopModule { }

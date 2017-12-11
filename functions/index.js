@@ -8,6 +8,48 @@ const sgMail = require('@sendgrid/mail');
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
+const stripe = require('stripe')(functions.config().stripe.testkey)
+
+exports.stripeCharge = functions.firestore
+  .document('/payments/{userId}/{paymentId}')
+  .onCreate(event => {
+    const payment = event.data.data()
+    const userId = event.params.userId;
+    const paymentId = event.params.paymentId;
+
+    // checks if payment exists or if it has already been charged
+    if (!payment || payment.charge) return;
+
+    return admin.firestore()
+      .collection('users')
+      .doc(userId)
+      .get()
+      .then(doc => {
+        console.log('got data: ' + data.displayName)
+        return doc.data();
+      })
+      .then(customer => {
+        const amount = payment.amount;
+        const idempotency_key = paymentId; // prevent duplicate charges
+        const source = payment.token.id;
+        const currency = 'dkk';
+        const charge = {
+          amount,
+          currency,
+          source
+        };
+        return stripe.charges.create(charge, {
+          idempotency_key
+        });
+      })
+      .then(charge => {
+        admin.firestore()
+          .doc(`/payments/${userId}/${paymentId}/charge`)
+          .set(charge)
+      })
+  });
+
+
 exports.firestoreEmail = functions.firestore
   .document('orders/{orderId}')
   .onCreate(event => {
