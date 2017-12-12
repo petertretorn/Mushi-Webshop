@@ -2,7 +2,7 @@
   <span class="goto-link" (click)="gotoHome()">Mushi Mushi</span>
   <span class="example-spacer"></span>
   <span *ngIf="isAdmin">Administrator</span>
-  <span *ngIf="auth.user | async; let user">{{ user.displayName }}&nbsp;&nbsp;</span>
+  <span *ngIf="!isAdmin && auth.user | async; let user">{{ user.displayName }}&nbsp;&nbsp;</span>
   <mat-icon class="goto-link" (click)="gotoCart()" *ngIf="!isAdmin">shopping_cart</mat-icon>
   <div class="badge-container">
     <div [style.visibility]="cartService.displayBadgeStyle()" class="cart-badge">{{ cartService.cart.size }}</div>
@@ -17,7 +17,11 @@
     </button>
     <a *ngIf="isAdmin" [routerLink]="['./../admin/products-list']" mat-menu-item>
       <mat-icon>settings</mat-icon>
-      <span>Administration</span>
+      <span>Varer</span>
+    </a>
+    <a *ngIf="isAdmin" [routerLink]="['./../admin/orders']" mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Ordrer</span>
     </a>
     <button *ngIf="auth.isSignedIn" mat-menu-item (click)="signOut()">
       <mat-icon>lock</mat-icon>

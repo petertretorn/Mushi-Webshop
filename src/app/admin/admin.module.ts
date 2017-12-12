@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     BlogsListComponent, 
     ProductsListComponent,
     CreateBlogComponent,
-    EditProductComponent
+    EditProductComponent,
+    OrderComponent
     ]
 })
 export class AdminModule { }

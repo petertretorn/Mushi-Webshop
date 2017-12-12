@@ -14,4 +14,8 @@ export class OrderService {
   createOrder(order) {
     return this.ordersRef.add(JSON.parse(JSON.stringify(order)))
   }
+
+  getOrders() {
+    return this.ordersRef.valueChanges()
+  }
 }

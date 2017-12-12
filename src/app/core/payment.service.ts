@@ -7,6 +7,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { OrderService } from '@app/core/order.service';
 import { AddressInfo } from '@app/models/addressInfo.model';
+import { OrderLine } from '@app/models/orderline.model';
 
 @Injectable()
 export class PaymentService {
@@ -21,7 +22,7 @@ export class PaymentService {
     private db: AngularFirestore,
     private cartService: ShoppingCartService,
     private orderService: OrderService) {
-    
+
     this.paymentRef = this.db.collection('payments')
   }
 
@@ -42,13 +43,12 @@ export class PaymentService {
   }
 
   processPayment(token, amount) {
-    this.cartService.cart.clear()
-
     this.handleOrder().then(orderId => {
       const payment = { orderId, token, amount, userId: this.user.uid }
       this.paymentRef.add(payment)
+      
+      this.cartService.cart.clear()
     })
-    this.cartService.cart.clear()
   }
 
   setAddress(addressInfo: AddressInfo) {
@@ -59,9 +59,11 @@ export class PaymentService {
 
     Object.assign(this.user, this.addressInfo)
 
+    const lines = this.mapLines( this.cartService.getLines())
+
     const order = {
       date: new Date(),
-      lines: this.cartService.getLines(),
+      lines: lines,
       uid: this.user.uid,
       shipping: this.addressInfo,
       status: 'not paid',
@@ -75,6 +77,17 @@ export class PaymentService {
       this.authService.updateUserData(this.user)
 
       return res.id
+    })
+  }
+
+  mapLines(lines: OrderLine[]) {
+    return lines
+    .map(line => {
+      return {
+        id: line.product.id,
+        name: line.product.name,
+        quantity: line.quantity
+      }
     })
   }
 }

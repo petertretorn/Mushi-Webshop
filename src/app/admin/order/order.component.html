@@ -1,0 +1,23 @@
+<div class="container">
+  <h3>Bestillinger</h3>
+
+  <mat-list>
+    <mat-list-item *ngFor="let order of orders">
+      <div class="flex-container">
+        <div class="date">
+          {{order.date | date}}
+        </div>
+        <div class="name">
+          {{order.shipping.fullName}}
+        </div>
+        <div class="status">
+          {{order.status}}
+        </div>
+        <div class="total">
+          {{order.total}}
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>

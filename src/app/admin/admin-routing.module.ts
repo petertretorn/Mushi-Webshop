@@ -5,6 +5,7 @@ import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import { MainComponent } from './main/main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OrderComponent } from '@app/admin/order/order.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'edit-product/:id', component: EditProductComponent },
       { path: 'blogs-list', component: BlogsListComponent },
       { path: 'products-list', component: ProductsListComponent },
+      { path: 'orders', component: OrderComponent }
     ]
   }
 ];
