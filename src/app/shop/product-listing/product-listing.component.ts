@@ -26,7 +26,9 @@ export class ProductListingComponent implements OnInit {
       this.categories = categories
 
       this.productService.getProducts().subscribe(products => {
-        this.products = products
+        this.products = products.sort(  (p1, p2) => {
+          return (p1.name === 'Mushi Mushi te') ? -1 : 1
+        })
         this.addCategories(this.products)
       })
     })

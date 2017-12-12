@@ -34,6 +34,8 @@ exports.stripeCharge = functions.firestore
       idempotency_key
     }).then(charge => {
       console.log('charge received')
+
+      
       admin.firestore()
       .collection('orders')
       .doc(orderId)

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from '@app/models/user.model';
 import { AuthService } from '@app/core/auth.service';
 import { ShoppingCartService } from '@app/core/shopping-cart.service';
@@ -21,7 +22,8 @@ export class PaymentService {
     private authService: AuthService,
     private db: AngularFirestore,
     private cartService: ShoppingCartService,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private router: Router) {
 
     this.paymentRef = this.db.collection('payments')
   }
@@ -48,6 +50,7 @@ export class PaymentService {
       this.paymentRef.add(payment)
       
       this.cartService.cart.clear()
+      this.router.navigate(['thank-you'])
     })
   }
 
